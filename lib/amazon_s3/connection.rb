@@ -46,7 +46,7 @@ module AmazonS3
 
       def object_url(filename, target_folder = @@config.attachments_folder)
         object = self.object(filename, target_folder)
-        object.public_url
+        object.presigned_url(:get, expires_in: 3600)
       end
 
       def get(filename, target_folder = @@config.attachments_folder)
